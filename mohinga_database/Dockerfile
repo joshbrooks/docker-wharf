@@ -1,0 +1,50 @@
+# vim:set ft=dockerfile:
+
+#--------- Generic stuff all our Dockerfiles should start with so we get caching ------------
+FROM ubuntu:xenial
+MAINTAINER Joshua Brooks <joshua@catalpa.io>
+RUN  export DEBIAN_FRONTEND=noninteractive
+ENV  DEBIAN_FRONTEND noninteractive
+RUN  dpkg-divert --local --rename --add /sbin/initctl
+ADD 71-apt-cacher-ng /etc/apt/apt.conf.d/71-apt-cacher-ng
+
+#-------------Application Specific Stuff ----------------------------------------------------
+
+# explicitly set user/group IDs
+RUN groupadd -r postgres --gid=999 && useradd -r -g postgres --uid=999 postgres
+
+
+
+# make the "en_US.UTF-8" locale so postgres will be utf-8 enabled by default
+RUN apt-get update && apt-get install -y locales && rm -rf /var/lib/apt/lists/* \
+	&& localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
+ENV LANG en_US.utf8
+
+RUN mkdir /docker-entrypoint-initdb.d
+
+RUN echo 'deb http://apt.postgresql.org/pub/repos/apt/ xenial-pgdg main' > /etc/apt/sources.list.d/pgdg.list
+
+RUN apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys B97B0AFCAA1A47F044F244A07FCC7D46ACCC4CF8
+RUN apt-get update \
+	&& apt-get install --allow-unauthenticated -y pgdg-keyring postgresql-9.5-postgis-2.2 gosu \
+	&& rm -rf /var/lib/apt/lists/*
+
+# make the sample config easier to munge (and "correct by default")
+RUN mv -v /usr/share/postgresql/9.5/postgresql.conf.sample /usr/share/postgresql/ \
+	&& ln -sv ../postgresql.conf.sample /usr/share/postgresql/9.5/ \
+	&& sed -ri "s!^#?(listen_addresses)\s*=\s*\S+.*!\1 = '*'!" /usr/share/postgresql/postgresql.conf.sample
+
+RUN mkdir -p /var/run/postgresql && chown -R postgres /var/run/postgresql
+
+ENV PATH /usr/lib/postgresql/9.5/bin:$PATH
+ENV PGDATA /var/lib/postgresql/datadocker 
+VOLUME /var/lib/postgresql/data
+
+COPY docker-entrypoint.sh /
+COPY docker-entrypoint-initdb.d /
+RUN chmod +x /docker-entrypoint.sh 
+
+ENTRYPOINT ["/docker-entrypoint.sh"]
+
+EXPOSE 5432
+CMD ["postgres"]
