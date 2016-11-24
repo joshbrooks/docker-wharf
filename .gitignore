@@ -88,5 +88,6 @@ ENV/
 # Rope project settings
 .ropeproject
 
-mohinga_database/docker-entrypoint-initdb.d/*
-
+*.dat
+*.json
+*.bson
