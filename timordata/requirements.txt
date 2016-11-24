@@ -1,0 +1,6 @@
+django==1.10.2
+djangorestframework==3.3.3
+django-rosetta==0.7.11
+uwsgi
+couchdbkit
+
