@@ -88,6 +88,6 @@ ENV/
 # Rope project settings
 .ropeproject
 
-# Docker Registry
-registry/registry
-apt-cacher/apt-cacher-ng
+*.dat
+*.json
+*.bson

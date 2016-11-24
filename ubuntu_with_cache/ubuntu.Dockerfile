@@ -7,4 +7,3 @@ RUN  dpkg-divert --local --rename --add /sbin/initctl
 ADD 71-apt-cacher-ng /etc/apt/apt.conf.d/71-apt-cacher-ng
 
 #-------------Application Specific Stuff ----------------------------------------------------
-
