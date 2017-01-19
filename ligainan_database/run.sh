@@ -1,7 +1,9 @@
-IMAGE=ligainan_db
-CONTAINER=ligainan_db
-USER=ligainan
-DATABASE=ligainan_db
-RESTORE_FROM_DIRECTORY=/docker-entrypoint-initdb.d/${DATABASE}
+#!/bin/bash
+source env.env
 
-docker run -d -P --name ${CONTAINER} -v `pwd`/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d -v `pwd`/opgib/ligainan_db:/${RESTORE_FROM_DIRECTORY} ${IMAGE}
+docker run \
+	--env-file ./env.env \
+	--rm -it -P \
+	--name ${CONTAINER} \
+	-v /home/josh/docker-wharf/opgib/${DATABASE}:/${RESTORE_FROM_DIRECTORY} \
+	${IMAGE}

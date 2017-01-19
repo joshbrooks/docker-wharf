@@ -93,6 +93,6 @@ ENV/
 *.bson
 
 formhub/formhub
-opgib/
+opgib/**/
 ligainan/liga-inan/
 ligainan/liga-inan
