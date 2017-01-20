@@ -13,7 +13,7 @@ djangorestframework
 python-dateutil==1.5
 nose==1.3.7
 six==1.8.0
-# wsgiref==0.1.2
+wsgiref==0.1.2
 celery==3.1.24
 fuzzywuzzy==0.3.2
 -e git://github.com/catalpainternational/health_service@add_app_label#egg=health_service-dev
@@ -24,7 +24,7 @@ fuzzywuzzy==0.3.2
 phonenumbers==6.2.0
 Whoosh==2.6.0
 xmltodict==0.9.0
-xlwt==1.2.0
+xlwt==0.7.5
 django-cors-middleware==1.2.0
 mock==1.3.0
 funcsigs==0.4

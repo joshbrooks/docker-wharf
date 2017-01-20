@@ -11,5 +11,3 @@ echo "Building the Liga Inan django app"
 ./build.sh && ./run.sh
 echo "Running some management commands for liga"
 docker exec -it ligainan bash -c "cd liga_inan_project && python ./manage.py cache_stats"
-
-

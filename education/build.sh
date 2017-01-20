@@ -12,5 +12,5 @@ if [ ! -d ${GHREPO} ]; then
   git clone https://github.com/${GHUSER}/${GHREPO}
 fi
 
-docker build -t `cat image` ${CONTEXT}
+docker build -t ${IMAGE} -f ${DOCKERFILE} ${CONTEXT}
 

@@ -9,7 +9,7 @@ ADD 71-apt-cacher-ng /etc/apt/apt.conf.d/71-apt-cacher-ng
 
 # Use a devpi server running on Docker Host
 ENV PIP_INDEX_URL=http://172.17.0.1:3141/root/pypi/+simple/
-COPY apt.py3.requirements .
+COPY apt.requirements .
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
 		python3 \
@@ -18,13 +18,21 @@ RUN apt-get update \
 		python3-setuptools \
         postgresql-client \
 		build-essential \
-		$(cat apt.py3.requirements)
+		$(cat apt.requirements) \
     && rm -rf /var/lib/apt/lists/*
+
 
 WORKDIR /usr/src/app
 
-ONBUILD COPY requirements.txt ./
-RUN pip3 install -U --trusted-host 172.17.0.1 pip3 wheel setuptools distribute
+ONBUILD COPY apt.requirements ./
+ONBUILD RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+	$(cat apt.requirements) \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN pip3 install -U --trusted-host 172.17.0.1 pip wheel setuptools distribute
+
+ONBUILD COPY requirements.txt .
 ONBUILD RUN pip3 install -U --trusted-host 172.17.0.1 -r requirements.txt
 
-CMD ["python"]
+CMD ["python3"]
