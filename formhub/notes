@@ -1,0 +1,2 @@
+from django.contrib import sites
+sites.models.Site.objects.create(id=1)

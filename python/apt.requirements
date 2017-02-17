@@ -1,0 +1,6 @@
+python
+python-pip
+python-dev
+python-setuptools
+postgresql-client
+build-essential

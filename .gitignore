@@ -91,3 +91,9 @@ ENV/
 *.dat
 *.json
 *.bson
+
+formhub/formhub
+opgib/**/
+ligainan/liga-inan/
+nodejs/bower-components/
+noejs/bower-cache/
