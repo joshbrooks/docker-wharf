@@ -3,7 +3,7 @@ source env.env
 
 docker run \
 	--env-file ./env.env \
-	--rm -it -P \
+	--rm -it -p ${PORT_5432}:5432 \
 	--name ${CONTAINER} \
-	-v /home/josh/docker-wharf/opgib/${DATABASE}:/${RESTORE_FROM_DIRECTORY} \
+	-v ${RESTORE_FROM}:/${RESTORE_FROM_DIRECTORY} \
 	${IMAGE}

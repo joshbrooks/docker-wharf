@@ -1,7 +1,0 @@
-# Uncomment the Acquire line below and then
-# Modify the host to match your needs if you wish to
-# use apt-cacher in your image build out (and the 
-# Subsequent running container.
-
-Acquire::http { Proxy "http://172.17.0.1:3142"; };
-
