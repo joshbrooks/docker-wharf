@@ -24,7 +24,9 @@ RUN apt-get update \
 WORKDIR /usr/src/app
 
 ONBUILD COPY requirements.txt ./
-RUN pip3 install -U --trusted-host 172.17.0.1 pip3 wheel setuptools distribute
+RUN pip3 install -U --trusted-host 172.17.0.1 pip wheel setuptools
+# RUN pip3 install -U --trusted-host 172.17.0.1 distribute
+
 ONBUILD RUN pip3 install -U --trusted-host 172.17.0.1 -r requirements.txt
 
 CMD ["python"]

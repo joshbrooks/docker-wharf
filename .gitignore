@@ -102,3 +102,5 @@ nodejs/bower-cache/
 
 *.cache
 */import_osm
+pgadmin4/run
+pgadmin4/pgadmin4*.whl
