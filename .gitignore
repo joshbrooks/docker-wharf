@@ -99,3 +99,6 @@ nodejs/bower-components/
 nodejs/bower-cache/
 
 .idea
+
+*.cache
+*/import_osm
