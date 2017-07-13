@@ -96,4 +96,6 @@ formhub/formhub
 opgib/**/
 ligainan/liga-inan/
 nodejs/bower-components/
-noejs/bower-cache/
+nodejs/bower-cache/
+
+.idea

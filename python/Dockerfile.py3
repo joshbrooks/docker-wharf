@@ -18,7 +18,7 @@ RUN apt-get update \
 		python3-setuptools \
         postgresql-client \
 		build-essential \
-		$(cat apt.py3.requirements)
+		$(cat apt.py3.requirements) \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /usr/src/app
