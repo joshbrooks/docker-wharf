@@ -1,1 +1,1 @@
-docker build -t devpi -f devpi.Dockerfile .
+docker build -t devpi -f Dockerfile .

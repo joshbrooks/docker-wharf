@@ -97,3 +97,6 @@ opgib/**/
 ligainan/liga-inan/
 nodejs/bower-components/
 noejs/bower-cache/
+
+*.cache
+*/import_osm
