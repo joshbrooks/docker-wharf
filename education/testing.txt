@@ -1,6 +1,0 @@
--r base.txt
-
-splinter==0.7.3
-chromedriver==2.21.1
-django-nose==1.4.4
-whitenoise==3.2.1
