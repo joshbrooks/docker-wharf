@@ -1,0 +1,13 @@
+version: '2'
+services:
+  postgres:
+    environment: 
+        USER: mohinga
+        DATABASE: mohinga_db
+        RESTORE_FROM_DIRECTORY: /source
+    image: timor-postgis
+    restart: always
+    ports:
+    - "5434:5432"
+    volumes:
+    - /home/josh/Desktop/opgib/mohinga_db/0.0-99.0_1498537343:/source

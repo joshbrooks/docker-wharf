@@ -1,0 +1,9 @@
+version: "3"
+services:
+  aptcacher:
+    build: .
+    ports:
+      - "3142:3142"
+
+    volumes:
+      -  /home/josh/apt-cacher-ng:/var/cache/apt-cacher-ng

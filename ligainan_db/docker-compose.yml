@@ -1,0 +1,13 @@
+version: '2'
+services:
+  db:
+    environment: 
+        USER: ligainan
+        DATABASE: ligainan_db
+        RESTORE_FROM_DIRECTORY: /source
+    image: timor-postgis
+    restart: always
+    ports:
+    - "5437:5432"
+    volumes:
+    - /home/josh/Desktop/opgib/ligainan-production.catalpa.build/ligainan_db/0.0-4.476_1499729119:/source

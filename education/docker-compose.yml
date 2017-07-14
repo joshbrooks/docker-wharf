@@ -1,0 +1,11 @@
+version: '2'
+services:
+  db:
+    environment: 
+        USER: education
+        DATABASE: education_db
+        RESTORE_FROM_DIRECTORY: /source
+    image: timor-postgis
+    restart: always
+    ports:
+    - "5437:5432"

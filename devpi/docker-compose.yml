@@ -1,0 +1,9 @@
+version: "3"
+services:
+  devpi:
+    build: .
+    ports:
+      - "3141:3141"
+
+    volumes:
+      -  /var/cache/devpi:/root/.devpi/server

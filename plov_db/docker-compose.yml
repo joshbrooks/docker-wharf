@@ -1,0 +1,13 @@
+version: '2'
+services:
+  postgres:
+    environment: 
+        USER: plov
+        DATABASE: plov_db
+        RESTORE_FROM_DIRECTORY: /source
+    image: timor-postgis
+    restart: always
+    ports:
+    - "5433:5432"
+    volumes:
+    - /home/josh/Desktop/opgib/plov_db/2017-06-21_1498029266:/source

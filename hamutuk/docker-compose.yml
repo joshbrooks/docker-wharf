@@ -1,0 +1,13 @@
+version: '2'
+services:
+  postgres:
+    environment: 
+        USER: openly_hamutuk
+        DATABASE: hamutuk_db
+        RESTORE_FROM_DIRECTORY: /source
+    image: timor-postgis
+    restart: always
+    ports:
+    - "5437:5432"
+    volumes:
+    - /home/josh/Desktop/opgib/openly_hamutuk_db/0.0-2105.0_1493210780:/source

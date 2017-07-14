@@ -1,0 +1,22 @@
+version: '2'
+services:
+  db:
+    environment: 
+        USER: libuntl
+        DATABASE: libuntl_db
+        RESTORE_FROM_DIRECTORY: /source
+    image: timor-postgis
+    restart: always
+    ports:
+    - "5435:5432"
+  legacy:
+    environment: 
+        USER: django
+        DATABASE: timordata_db
+        RESTORE_FROM_DIRECTORY: /source
+    image: timor-postgis
+    restart: always
+    ports:
+    - "5436:5432"
+    volumes:
+    - /home/josh/github/timordata/timordata-postgres:/source
