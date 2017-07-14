@@ -96,7 +96,11 @@ formhub/formhub
 opgib/**/
 ligainan/liga-inan/
 nodejs/bower-components/
-noejs/bower-cache/
+nodejs/bower-cache/
+
+.idea
 
 *.cache
 */import_osm
+pgadmin4/run
+pgadmin4/pgadmin4*.whl
