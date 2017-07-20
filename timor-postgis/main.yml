@@ -9,6 +9,7 @@
     postgresql_version: 9.6
     postgis_version: 2.3
     postgis_package_version: 2.3.2+dfsg-1~exp2.pgdg16.04+1
+    postgis_scripts_version: 2.3.2+dfsg-1~exp2.pgdg16.04+1
 
   tasks:
     - uri:
@@ -16,6 +17,27 @@
         return_content: yes
       ignore_errors: yes
       register: webpage
+
+    - name: add postgres group
+      group:
+        name: "postgres"
+        state: present
+        gid: 999
+
+    - name: add postgres user
+      user:
+        name: "postgres"
+        state: present
+        groups: "postgres"
+        uid: 999
+
+    - name: Create directory
+      file:
+        path: /var/run/postgresql
+        state: directory
+        mode: 0755
+        owner: postgres
+        group: postgres
 
     - name: apt | Clear cache file if not available
       template:
@@ -35,6 +57,17 @@
         mode: 0644
       when: "'Apt-Cacher NG maintenance page' in webpage.content"
 
+    - name: Install locales
+      package:
+        name:
+        update_cache: yes
+        state: present
+      with_items:
+        - locales
+
+    - name: UTF-8 enabled
+      command: localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
+
     - name: postgresql| Configure the PostgreSQL APT key
       apt_key:
         keyserver: hkp://p80.pool.sks-keyservers.net:80
@@ -48,9 +81,20 @@
 
     - name: Install PostGIS
       package:
-        name: postgresql-{{ postgresql_version }}-postgis-{{ postgis_version }}={{ postgis_package_version }}
+        name:
         update_cache: yes
         state: present
+      with_items:
+        - postgresql-{{ postgresql_version }}-postgis-{{ postgis_version }}={{ postgis_package_version }}
+        - postgresql-{{ postgresql_version }}-postgis-{{ postgis_version }}-scripts={{ postgis_scripts_version }}
+        - gosu
+
+    - name: Install PostGIS Scripts
+      package:
+        name:
+        update_cache: yes
+        state: present
+
 
     - name: apt-get clean
       command: apt-get clean
