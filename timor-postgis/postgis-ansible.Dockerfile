@@ -12,7 +12,7 @@ VOLUME /var/lib/postgresql/data
 COPY docker-entrypoint-initdb.d/ /docker-entrypoint-initdb.d/
 COPY docker-entrypoint.sh /
 
-RUN ansible-playbook main.yml
+RUN ansible-playbook main.yml && apt-get clean
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
 
