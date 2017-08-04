@@ -1,0 +1,3 @@
+# This template disabled by the ansible aptcache-client role
+# due to timing out trying to resolve the page
+#  Acquire::http { Proxy "http://{{aptcacheserver}}:{{aptcacheport}}"; };

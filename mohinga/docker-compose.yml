@@ -10,4 +10,4 @@ services:
     ports:
     - "5434:5432"
     volumes:
-    - /home/josh/Desktop/opgib/mohinga_db/0.0-99.0_1498537343:/source
+    - /home/josh/Desktop/opgib/mohinga-production.catalpa.build/mohinga_db/0.0-110.20_1500290554:/source

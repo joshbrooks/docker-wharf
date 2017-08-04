@@ -1,0 +1,88 @@
+
+- hosts: all
+
+
+  vars:
+    aptcacheserver: 172.17.0.1
+    aptcacheport: 3142
+    release: xenial
+    postgresql_version: 9.6
+    postgis_version: 2.3
+    postgis_package_version: 2.3.2+dfsg-1~exp2.pgdg16.04+1
+    postgis_scripts_version: 2.3.2+dfsg-1~exp2.pgdg16.04+1
+    gosu_version: "1.10"
+
+  tasks:
+
+    - uri:
+        url: http://{{aptcacheserver}}:{{aptcacheport}}/acng-report.html
+        return_content: yes
+      ignore_errors: yes
+      register: webpage
+
+    - name: apt | Clear cache file if not available
+      template:
+        src: templates/no_aptcache.template
+        dest: /etc/apt/apt.conf.d/71aptcache
+        owner: root
+        group: root
+        mode: 0644
+      when: "'Apt-Cacher NG maintenance page' not in webpage.content"
+
+    - name: apt | Create apt cache file
+      template:
+        src: templates/aptcache.template
+        dest: /etc/apt/apt.conf.d/71aptcache
+        owner: root
+        group: root
+        mode: 0644
+      when: "'Apt-Cacher NG maintenance page' in webpage.content"
+
+
+    - name: add postgres group
+      group:
+        name: "postgres"
+        state: present
+        gid: 999
+
+    - name: add postgres user
+      user:
+        name: "postgres"
+        state: present
+        groups: "postgres"
+        uid: 999
+
+    - name: Create directory
+      file:
+        path: /var/run/postgresql
+        state: directory
+        mode: 0755
+        owner: postgres
+        group: postgres
+
+    - name: postgresql| Configure the PostgreSQL APT key
+      apt_key:
+        keyserver: hkp://p80.pool.sks-keyservers.net:80
+        id: "ACCC4CF8"
+        state: present
+
+    - name: postgresql | Configure the PostgreSQL APT repositories
+      apt_repository:
+        repo: deb http://apt.postgresql.org/pub/repos/apt/ {{ release }}-pgdg main
+        state: present
+
+    - name: Install locales
+      package:
+        name: "{{ item }}"
+        update_cache: yes
+        state: present
+      with_items:
+        - locales
+        - postgresql-{{ postgresql_version }}-postgis-{{ postgis_version }}={{ postgis_package_version }}
+        - postgresql-{{ postgresql_version }}-postgis-{{ postgis_version }}-scripts={{ postgis_scripts_version }}
+        - gosu
+
+    - name: UTF-8 enabled
+      locale_gen:
+        name: en_US.UTF-8
+        state: present
