@@ -1,0 +1,59 @@
+
+- hosts: all
+
+  vars:
+    aptcacheserver: 172.17.0.1
+    aptcacheport: 3142
+    release: xenial
+
+  tasks:
+
+    - uri:
+        url: http://{{aptcacheserver}}:{{aptcacheport}}/acng-report.html
+        return_content: yes
+      ignore_errors: yes
+      register: webpage
+
+    - name: apt | Clear cache file if not available
+      template:
+        src: templates/no_aptcache.template
+        dest: /etc/apt/apt.conf.d/71aptcache
+        owner: root
+        group: root
+        mode: 0644
+      when: "'Apt-Cacher NG maintenance page' not in webpage.content"
+
+    - name: apt | Create apt cache file
+      template:
+        src: templates/aptcache.template
+        dest: /etc/apt/apt.conf.d/71aptcache
+        owner: root
+        group: root
+        mode: 0644
+      when: "'Apt-Cacher NG maintenance page' in webpage.content"
+
+    - name: mongo| Configure the Mongo APT key
+      apt_key:
+        keyserver: hkp://keyserver.ubuntu.com:80
+        id: "0C49F3730359A14518585931BC711F9BA15703C6"
+        state: present
+
+    - name: mongo | Configure the Mongo APT repositories
+      apt_repository:
+        repo: deb http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.4 multiverse
+        state: present
+
+
+    - name: Install mongodb-org
+      package:
+        name: "{{ item }}"
+        update_cache: yes
+        state: present
+      with_items:
+        - mongodb-org
+        - locales
+
+    - name: UTF-8 enabled
+      locale_gen:
+        name: en_US.UTF-8
+        state: present
