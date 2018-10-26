@@ -1,5 +1,5 @@
 FROM timor-python2
-MAINTAINER Joshua Brooks <joshua@catalpa.io>
+LABEL maintainer="Joshua Brooks <joshua@catalpa.io>"
 WORKDIR /usr/src/app/
 ENV GHREPO=liga-inan
 COPY ${GHREPO} /usr/src/app/

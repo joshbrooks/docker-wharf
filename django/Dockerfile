@@ -1,5 +1,5 @@
 FROM timor-python:xenial
-MAINTAINER Joshua Brooks <joshua@catalpa.io>
+LABEL maintainer="Joshua Brooks <joshua@catalpa.io>"
 ENV projectname=timordata
 
 WORKDIR /usr/src/app/${projectname}

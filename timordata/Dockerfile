@@ -1,5 +1,5 @@
 FROM timor-python2
-MAINTAINER Joshua Brooks <joshua@catalpa.io>
+LABEL maintainer="Joshua Brooks <joshua@catalpa.io>"
 ENV projectname=timordata
 
 RUN django-admin.py startproject ${projectname}
