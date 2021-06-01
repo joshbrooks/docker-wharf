@@ -40,7 +40,7 @@ django-template-analyzer==1.6.1
 # On a more modern Python (2.7.9+) we just need the requests package, no need to install alternative bindings,
 # but then you also need to remove the monkey-patching from
 # liga_inan_project/liga_inan_project/__init__.py .
-urllib3==1.16
+urllib3==1.26.5
 requests==2.10.0
 responses==0.5.1 # mocking for requests
 pyOpenSSL==16.0.0
