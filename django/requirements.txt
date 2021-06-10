@@ -1,2 +1,2 @@
-django==1.9.7
+django==2.2.24
 uwsgi
