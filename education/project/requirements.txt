@@ -1,5 +1,5 @@
 django-haystack==2.4.1
-Django==1.8.15
+Django==2.2.24
 argparse==1.2.1
 git+https://github.com/jschwab/django-activelink@0c3a63745a7d627ba16efae39e1ec7bec12336d0
 django-extensions==1.6.7
