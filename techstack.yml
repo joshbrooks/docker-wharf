@@ -1,7 +1,8 @@
 repo_name: joshbrooks/docker-wharf
 report_id: bede083a3bf6e27e9b703fe90a6f5293
+version: 0.1
 repo_type: Public
-timestamp: '2023-11-09T23:23:59+00:00'
+timestamp: '2024-01-04T15:17:08+00:00'
 requested_by: joshbrooks
 provider: github
 branch: master
@@ -16,6 +17,7 @@ tools:
   category: Languages & Frameworks
   sub_category: Languages
   image_url: https://img.stackshare.io/service/993/pUBY5pVj.png
+  detection_source_url: https://github.com/joshbrooks/docker-wharf
   detection_source: Repo Metadata
 - name: CouchDB
   description: HTTP + JSON document database with Map Reduce views and peer-based
@@ -27,6 +29,7 @@ tools:
   category: Data Stores
   sub_category: Databases
   image_url: https://img.stackshare.io/service/1042/default_86434292d1c55e5f3a3256ca2bc6e2ea62eaca83.jpg
+  detection_source_url: https://github.com/joshbrooks/docker-wharf/blob/master/timordata/requirements.txt
   detection_source: timordata/requirements.txt
   last_updated_by: Joshua Brooks
   last_updated_on: 2016-11-07 00:20:01.000000000 Z
@@ -38,7 +41,8 @@ tools:
   category: Data Stores
   sub_category: Databases
   image_url: https://img.stackshare.io/service/1030/leaf-360x360.png
-  detection_source: formhub/settings_local.py
+  detection_source_url: https://github.com/joshbrooks/docker-wharf/blob/master/formhub/requirements.txt
+  detection_source: formhub/requirements.txt
   last_updated_by: Joshua Brooks
   last_updated_on: 2017-01-17 01:20:15.000000000 Z
 - name: Ansible
@@ -51,6 +55,7 @@ tools:
   category: Build, Test, Deploy
   sub_category: Server Configuration and Automation
   image_url: https://img.stackshare.io/service/663/ElOjna20.png
+  detection_source_url: https://github.com/joshbrooks/docker-wharf/blob/master/ansible/Dockerfile
   detection_source: ansible/Dockerfile
   last_updated_by: joshbrooks
   last_updated_on: 2017-07-20 15:13:40.000000000 Z
@@ -63,6 +68,7 @@ tools:
   category: Build, Test, Deploy
   sub_category: Virtual Machine Platforms & Containers
   image_url: https://img.stackshare.io/service/586/n4u37v9t_400x400.png
+  detection_source_url: https://github.com/joshbrooks/docker-wharf
   detection_source: Repo Metadata
 - name: Git
   description: Fast, scalable, distributed revision control system
@@ -72,6 +78,7 @@ tools:
   category: Build, Test, Deploy
   sub_category: Version Control System
   image_url: https://img.stackshare.io/service/1046/git.png
+  detection_source_url: https://github.com/joshbrooks/docker-wharf
   detection_source: Repo Metadata
 - name: PyPI
   description: A repository of software for the Python programming language
@@ -81,6 +88,7 @@ tools:
   category: Build, Test, Deploy
   sub_category: Hosted Package Repository
   image_url: https://img.stackshare.io/service/12572/-RIWgodF_400x400.jpg
+  detection_source_url: https://github.com/joshbrooks/docker-wharf/blob/master/requirements.txt
   detection_source: requirements.txt
   last_updated_by: Joshua Brooks
   last_updated_on: 2018-10-26 15:55:14.000000000 Z
@@ -92,7 +100,8 @@ tools:
   category: Application Hosting
   sub_category: Web Server Interface
   image_url: https://img.stackshare.io/service/1838/uwsgi.png
-  detection_source: timordata/requirements.txt
+  detection_source_url: https://github.com/joshbrooks/docker-wharf/blob/master/django/requirements.txt
+  detection_source: django/requirements.txt
   last_updated_by: Joshua Brooks
   last_updated_on: 2016-11-07 00:20:01.000000000 Z
 - name: Pillow
@@ -103,6 +112,7 @@ tools:
   category: Assets and Media
   sub_category: Image Processing and Management
   image_url: https://img.stackshare.io/service/2375/default_1f67b0ca7416a9f52beb655f90b5602d5ef74b75.jpg
+  detection_source_url: https://github.com/joshbrooks/docker-wharf/blob/master/formhub/requirements.txt
   detection_source: formhub/requirements.txt
   last_updated_by: Joshua Brooks
   last_updated_on: 2017-01-17 01:20:15.000000000 Z
@@ -113,6 +123,7 @@ tools:
   open_source: false
   hosted_saas: false
   image_url: https://img.stackshare.io/service/3519/3wgIDj3j_normal.png
+  detection_source_url: https://github.com/joshbrooks/docker-wharf/blob/master/formhub/docker-compose.yml
   detection_source: formhub/docker-compose.yml
   last_updated_by: Joshua Brooks
   last_updated_on: 2017-01-17 01:20:15.000000000 Z
@@ -125,6 +136,7 @@ tools:
   category: Languages & Frameworks
   sub_category: Languages
   image_url: https://img.stackshare.io/service/4631/default_c2062d40130562bdc836c13dbca02d318205a962.png
+  detection_source_url: https://github.com/joshbrooks/docker-wharf
   detection_source: Repo Metadata
 - name: Ubuntu
   description: The leading OS for PC, tablet, phone and cloud
@@ -134,18 +146,20 @@ tools:
   category: Languages & Frameworks
   sub_category: Operating Systems
   image_url: https://img.stackshare.io/service/3511/cof_orange_hex.jpg
-  detection_source: python3/Dockerfile
+  detection_source_url: https://github.com/joshbrooks/docker-wharf/blob/master/ansible/Dockerfile
+  detection_source: ansible/Dockerfile
   last_updated_by: joshbrooks
   last_updated_on: 2017-07-20 15:13:40.000000000 Z
 - name: docker-compose
   description: Multi-container orchestration for Docker
-  package_url: https://pypi.org/docker-compose
+  package_url: https://pypi.org/project/docker-compose
   license: Apache-2.0
   open_source: true
   hosted_saas: false
   category: Libraries
   sub_category: PyPI Packages
   image_url: https://img.stackshare.io/package/20266/default_2f26e5bf51865c5f7c033b98815e6cc4068db7a7.png
+  detection_source_url: https://github.com/joshbrooks/docker-wharf/blob/master/requirements.txt
   detection_source: requirements.txt
   last_updated_by: Joshua Brooks
   last_updated_on: 2018-10-26 15:55:14.000000000 Z
